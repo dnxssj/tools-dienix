@@ -395,19 +395,18 @@ const dataTranslations = {
       ]
     },
 
-    "Vacation Rental Web Platform": {
-      title: "Plataforma Web de Alquiler Vacacional",
+    "Odenvia Stay": {
+      title: "Odenvia Stay",
       description:
-        "Plataforma web para gestionar y presentar alojamientos turísticos.",
+        "Plataforma web moderna para descubrir alojamientos, consultar disponibilidad y realizar reservas.",
       details:
-        "Proyecto orientado a crear una plataforma moderna para alojamientos vacacionales, con una interfaz clara y preparada para futuras funciones de gestión.",
+        "Demo de una plataforma de alquiler vacacional centrada en la experiencia del huésped, desde la búsqueda y consulta del alojamiento hasta la disponibilidad, las actividades locales y el proceso de reserva simulado.",
       status: "Demo",
       category: "Web",
       features: [
-        "Diseño responsive",
-        "Presentación de alojamientos",
-        "Arquitectura preparada para gestión",
-        "Interfaz moderna"
+        "Presentación del alojamiento con información y precios",
+        "Calendario de disponibilidad y proceso de reserva simulado",
+        "Información sobre actividades y lugares de interés locales"
       ]
     },
 
@@ -445,19 +444,18 @@ const dataTranslations = {
       ]
     },
 
-    "Vacation Rental Web Platform": {
-      title: "Ferienvermietungs-Plattform",
+    "Odenvia Stay": {
+      title: "Odenvia Stay",
       description:
-        "Webplattform zur Verwaltung und Präsentation von Ferienunterkünften.",
+        "Moderne Webplattform zur Entdeckung von Unterkünften, Verfügbarkeitsprüfung und Buchung.",
       details:
-        "Ein Projekt für eine moderne Plattform für Ferienunterkünfte mit klarer Benutzeroberfläche und einer Architektur für zukünftige Verwaltungsfunktionen.",
+        "Demo einer Ferienvermietungsplattform mit Fokus auf die Gästeerfahrung – von der Suche und Präsentation der Unterkunft über die Verfügbarkeit bis hin zu lokalen Aktivitäten und einem simulierten Buchungsprozess.",
       status: "Demo",
       category: "Web",
       features: [
-        "Responsive Design",
-        "Präsentation von Unterkünften",
-        "Erweiterbare Verwaltungsarchitektur",
-        "Moderne Benutzeroberfläche"
+        "Präsentation der Unterkunft mit Informationen und Preisen",
+        "Verfügbarkeitskalender und simulierter Buchungsprozess",
+        "Informationen zu lokalen Aktivitäten und Sehenswürdigkeiten"
       ]
     },
 
@@ -931,8 +929,8 @@ function Projects({
       lang === "es"
         ? "Productividad"
         : lang === "de"
-        ? "Produktivität"
-        : "Productivity"
+          ? "Produktivität"
+          : "Productivity"
   };
 
   const categories = [
@@ -949,9 +947,9 @@ function Projects({
       filter === "All"
         ? PROJECTS
         : PROJECTS.filter(
-            (project) =>
-              project.category === filter
-          ),
+          (project) =>
+            project.category === filter
+        ),
     [filter]
   );
 
@@ -971,11 +969,10 @@ function Projects({
         <div className="filter-row">
           {categories.map((category) => (
             <button
-              className={`filter ${
-                filter === category
+              className={`filter ${filter === category
                   ? "active"
                   : ""
-              }`}
+                }`}
               key={category}
               onClick={() =>
                 setFilter(category)
@@ -1027,7 +1024,7 @@ function Toolkit() {
           {TOOLS.map((tool) => {
             const tr =
               toolTranslations[lang]?.[
-                tool.title
+              tool.title
               ];
 
             return (
@@ -1278,28 +1275,28 @@ function PasswordGenerator({ t }) {
         () => setCopied(false),
         1600
       );
-    } catch {}
+    } catch { }
   };
 
   const entropy =
     mode === "random"
       ? Math.round(
-          length *
-            Math.log2(
-              26 + 26 + 10 + 28
-            )
+        length *
+        Math.log2(
+          26 + 26 + 10 + 28
         )
+      )
       : Math.round(
-          Math.max(
-            1,
-            phrase.replace(/\s+/g, "")
-              .length
-          ) *
-            4.2 +
-            (useNumbers ? 8 : 0) +
-            (useSymbols ? 8 : 0) +
-            (useSeparators ? 3 : 0)
-        );
+        Math.max(
+          1,
+          phrase.replace(/\s+/g, "")
+            .length
+        ) *
+        4.2 +
+        (useNumbers ? 8 : 0) +
+        (useSymbols ? 8 : 0) +
+        (useSeparators ? 3 : 0)
+      );
 
   return (
     <div className="utility-panel">
@@ -1330,9 +1327,8 @@ function PasswordGenerator({ t }) {
         </div>
 
         <span
-          className={`chevron ${
-            open ? "open" : ""
-          }`}
+          className={`chevron ${open ? "open" : ""
+            }`}
         >
           <ChevronDown size={18} />
         </span>
@@ -1635,7 +1631,7 @@ function Debloat({ t, lang }) {
   const pct = Math.round(
     (completed /
       localizedItems.length) *
-      100
+    100
   );
 
   const update = (next) => {
@@ -1817,11 +1813,10 @@ function Debloat({ t, lang }) {
             {localizedItems.map(
               ([title, desc, level], index) => (
                 <label
-                  className={`check-item ${
-                    done[index]
+                  className={`check-item ${done[index]
                       ? "checked"
                       : ""
-                  }`}
+                    }`}
                   style={{
                     gridTemplateColumns: "20px minmax(0, 1fr) auto"
                   }}
@@ -1861,8 +1856,8 @@ function Debloat({ t, lang }) {
                     {level === "safe"
                       ? t.ok
                       : level === "review"
-                      ? t.review
-                      : t.omit}
+                        ? t.review
+                        : t.omit}
                   </span>
 
                 </label>
@@ -1919,8 +1914,8 @@ function ProjectPage() {
 
   const tr = project
     ? dataTranslations[lang]?.[
-        project.title
-      ] || {}
+    project.title
+    ] || {}
     : {};
 
   const p = {
@@ -1929,27 +1924,27 @@ function ProjectPage() {
 
     category: project
       ? tr.category ||
-        item.category
+      item.category
       : t.categoryToolkit,
 
     status: project
       ? tr.status ||
-        item.status
+      item.status
       : t.available,
 
     details: project
       ? tr.details ||
-        item.details
+      item.details
       : item.description,
 
     features: project
       ? tr.features ||
-        item.features
+      item.features
       : [
-          "Focused utility",
-          "Designed for Windows",
-          "Built as part of DNX Lab"
-        ],
+        "Focused utility",
+        "Designed for Windows",
+        "Built as part of DNX Lab"
+      ],
 
     links:
       item.links || {
