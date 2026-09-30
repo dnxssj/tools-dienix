@@ -1,0 +1,13 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "rewrites": [
+    {
+      "source": "/odenvia-demo",
+      "destination": "https://odenvia-stay.vercel.app/odenvia-demo"
+    },
+    {
+      "source": "/odenvia-demo/:path*",
+      "destination": "https://odenvia-stay.vercel.app/odenvia-demo/:path*"
+    }
+  ]
+}
