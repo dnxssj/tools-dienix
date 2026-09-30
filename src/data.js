@@ -23,7 +23,7 @@ export const PROJECTS = [
     title: "BeeWeb",
     status: "In Progress",
     category: "Software",
-    accent: "#00F0FF",
+    accent: "#FFB86B",
     description: "A modular management platform for beekeeping and agricultural operations.",
     details: "BeeWeb is being developed as a practical ERP-style platform for managing hives, inspections, treatments, inventory and future agricultural modules from one place.",
     tags: ["React", "Vite", "Node.js", "Express", "PostgreSQL", "JWT", "QR Code"],
@@ -31,16 +31,23 @@ export const PROJECTS = [
     links: { source: "", demo: "" }
   },
   {
-    slug: "fewo-demo",
-    title: "Vacation Rental Web Platform",
+    slug: "odenvia-demo",
+    title: "Odenvia Stay",
     status: "Demo",
     category: "Web",
     accent: "#8C6CFF",
-    description: "A modern vacation rental web platform with booking flow, admin dashboard and responsive UI.",
-    details: "A frontend-focused prototype exploring the guest booking journey, availability and an administration area for reservations and users.",
-    tags: ["Next.js", "Tailwind CSS", "React", "Mock Data"],
-    features: ["Booking flow with availability check", "Admin dashboard with reservations and user management", "Interactive calendar for booking overview"],
-    links: { source: "", demo: "" }
+    description: "A modern vacation rental platform focused on accommodation discovery, availability and booking flow.",
+    details: "A frontend-focused vacation rental demo exploring the guest experience, from discovering a property and checking availability to reviewing local activities and completing a simulated booking.",
+    tags: ["React", "Vite", "React Router", "Mock Data"],
+    features: [
+      "Property showcase with accommodation details and pricing",
+      "Availability calendar and simulated booking flow",
+      "Local activities and destination information"
+    ],
+    links: {
+      source: "",
+      demo: "https://tools.dnxlab.de/odenvia-demo/"
+    }
   },
   {
     slug: "task-manager",
