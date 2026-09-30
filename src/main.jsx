@@ -112,6 +112,17 @@ const translations = {
     debloatCopy:
       "The checklist keeps the original W Debloat content while making it part of this site, with persistent local progress.",
 
+    instructionsTitle: "How to run W Debloat",
+    instructionsText:
+      "W Debloat uses WinUtil by Chris Titus Tech. Open PowerShell or Windows Terminal as administrator, paste the command below and follow the setup. Review the selected changes before applying them.",
+    instructionsLink: "Official WinUtil",
+    instructionsSteps: "PowerShell / Windows Terminal as administrator",
+    instructionsStep2: "Paste the command below",
+    instructionsStep3: "Review the changes and create a restore point if desired",
+    instructionsCommandLabel: "Recommended command",
+    instructionsWarning:
+      "Do not run debloat scripts blindly. Review app removals and system tweaks before applying them.",
+
     checklistKicker: "W DEBLOAT / CHECKLIST",
     checklistTitle: "Clean Windows. Your way.",
     checklistDesc:
@@ -206,6 +217,17 @@ const translations = {
     debloatCopy:
       "La checklist conserva el contenido original de W Debloat y ahora forma parte de esta web, con progreso persistente en local.",
 
+    instructionsTitle: "Cómo ejecutar W Debloat",
+    instructionsText:
+      "W Debloat utiliza WinUtil de Chris Titus Tech. Abre PowerShell o Terminal de Windows como administrador, pega el comando de abajo y sigue el asistente. Revisa los cambios seleccionados antes de aplicarlos.",
+    instructionsLink: "WinUtil oficial",
+    instructionsSteps: "PowerShell / Terminal de Windows como administrador",
+    instructionsStep2: "Pega el comando de abajo",
+    instructionsStep3: "Revisa los cambios y crea un punto de restauración si quieres",
+    instructionsCommandLabel: "Comando recomendado",
+    instructionsWarning:
+      "No ejecutes herramientas de debloat a ciegas. Revisa las eliminaciones y los cambios del sistema antes de aplicarlos.",
+
     checklistKicker: "W DEBLOAT / CHECKLIST",
     checklistTitle: "Limpia Windows. A tu manera.",
     checklistDesc:
@@ -299,6 +321,17 @@ const translations = {
     debloatTitle: "Windows, ohne unnötigen Ballast.",
     debloatCopy:
       "Die Checkliste behält den ursprünglichen W-Debloat-Inhalt und ist jetzt Teil dieser Website, inklusive lokal gespeichertem Fortschritt.",
+
+    instructionsTitle: "W Debloat ausführen",
+    instructionsText:
+      "W Debloat nutzt WinUtil von Chris Titus Tech. Öffne PowerShell oder Windows Terminal als Administrator, füge den folgenden Befehl ein und folge dem Assistenten. Prüfe die ausgewählten Änderungen vor der Anwendung.",
+    instructionsLink: "Offizielles WinUtil",
+    instructionsSteps: "PowerShell / Windows Terminal als Administrator",
+    instructionsStep2: "Den folgenden Befehl einfügen",
+    instructionsStep3: "Änderungen prüfen und bei Bedarf einen Wiederherstellungspunkt erstellen",
+    instructionsCommandLabel: "Empfohlener Befehl",
+    instructionsWarning:
+      "Debloat-Tools nicht blind ausführen. Prüfe App-Entfernungen und Systemänderungen vor der Anwendung.",
 
     checklistKicker: "W DEBLOAT / CHECKLISTE",
     checklistTitle: "Windows bereinigen. Auf deine Art.",
@@ -890,6 +923,18 @@ function Projects({
   const [filter, setFilter] =
     useState("All");
 
+  const categoryLabels = {
+    All: t.all,
+    Software: "Software",
+    Web: "Web",
+    Productivity:
+      lang === "es"
+        ? "Productividad"
+        : lang === "de"
+        ? "Produktivität"
+        : "Productivity"
+  };
+
   const categories = [
     "All",
     ...new Set(
@@ -936,9 +981,7 @@ function Projects({
                 setFilter(category)
               }
             >
-              {category === "All"
-                ? t.all
-                : category}
+              {categoryLabels[category] || category}
             </button>
           ))}
         </div>
@@ -1495,10 +1538,79 @@ function PasswordGenerator({ t }) {
 }
 
 /* =========================================================
+   LOCALIZED W DEBLOAT CHECKLIST
+========================================================= */
+
+const debloatTranslations = {
+  en: [
+    ["Activity history", "Disables unnecessary activity history."],
+    ["Consumer features", "Disables automatic consumer-oriented content and apps."],
+    ["Storage Sense / Disk cleanup", "Runs Windows disk cleanup and removes temporary files."],
+    ["End task", "Adds the End Task option to the taskbar context menu."],
+    ["Automatic folder discovery", "Disables automatic folder type detection for consistent Explorer views."],
+    ["Location tracking", "Disable this if the PC does not need Windows location services."],
+    ["Recommended Store search", "Disables recommended content in Microsoft Store searches."],
+    ["Background apps", "Disables unnecessary apps from running in the background."],
+    ["Explorer Home / Gallery", "Removes Home/Gallery content if you do not use it."],
+    ["Edge debloat", "Removes unnecessary Edge extras without uninstalling Edge."],
+    ["Windows AI", "Disables or removes Windows AI components you do not need."],
+    ["Classic context menu", "Restores the previous right-click context menu design."],
+    ["Widgets", "Removes Windows Widgets if you do not use them."],
+    ["Telemetry", "Reduces or disables optional telemetry."],
+    ["Temporary files", "Cleans temporary user and system files."],
+    ["Restore point", "Creates a restore point before applying important changes."]
+  ],
+  es: [
+    ["Historial de actividad", "Desactiva el historial de actividad innecesario."],
+    ["Funciones para consumidores", "Desactiva contenido/apps automáticos orientados al consumidor."],
+    ["Liberador de espacio", "Ejecuta la limpieza de disco y de archivos temporales de Windows."],
+    ["Finalizar tarea", "Activa la opción Finalizar tarea en el menú contextual de la barra de tareas."],
+    ["Detección automática de carpetas", "Desactiva la detección automática del tipo de carpeta si quieres vistas de Explorer consistentes."],
+    ["Seguimiento de ubicación", "Desactívalo si el equipo no necesita los servicios de ubicación de Windows."],
+    ["Búsqueda recomendada de Store", "Desactiva el contenido recomendado en las búsquedas de Microsoft Store."],
+    ["Aplicaciones en segundo plano", "Desactiva la ejecución en segundo plano de aplicaciones innecesarias."],
+    ["Inicio / Galería del Explorador", "Elimina el contenido de Inicio/Galería si no te resulta útil."],
+    ["Debloat de Edge", "Elimina extras innecesarios de Edge sin desinstalar Edge."],
+    ["Windows AI", "Desactiva/elimina componentes de Windows AI que no necesites."],
+    ["Menú contextual clásico", "Restaura el diseño anterior del menú contextual del botón derecho."],
+    ["Widgets", "Elimina Windows Widgets si no los utilizas."],
+    ["Telemetría", "Reduce/desactiva la telemetría opcional."],
+    ["Archivos temporales", "Limpia archivos temporales del usuario y del sistema."],
+    ["Punto de restauración", "Crea un punto de restauración antes de aplicar cambios importantes."]
+  ],
+  de: [
+    ["Aktivitätsverlauf", "Deaktiviert den unnötigen Aktivitätsverlauf."],
+    ["Verbraucherfunktionen", "Deaktiviert automatische Inhalte und Apps für Verbraucher."],
+    ["Datenträgerbereinigung", "Führt die Windows-Datenträgerbereinigung und die Bereinigung temporärer Dateien aus."],
+    ["Aufgabe beenden", "Aktiviert die Option Aufgabe beenden im Kontextmenü der Taskleiste."],
+    ["Automatische Ordnertyperkennung", "Deaktiviert die automatische Erkennung des Ordnertyps für einheitliche Explorer-Ansichten."],
+    ["Standortverfolgung", "Deaktivieren, wenn der PC keine Windows-Standortdienste benötigt."],
+    ["Empfohlene Store-Suche", "Deaktiviert empfohlene Inhalte in Microsoft-Store-Suchen."],
+    ["Hintergrund-Apps", "Deaktiviert unnötige Apps, die im Hintergrund ausgeführt werden."],
+    ["Explorer-Startseite / Galerie", "Entfernt Startseite-/Galerie-Inhalte, wenn du sie nicht verwendest."],
+    ["Edge-Debloat", "Entfernt unnötige Edge-Zusatzfunktionen, ohne Edge zu deinstallieren."],
+    ["Windows AI", "Deaktiviert oder entfernt nicht benötigte Windows-AI-Komponenten."],
+    ["Klassisches Kontextmenü", "Stellt das frühere Design des Rechtsklick-Kontextmenüs wieder her."],
+    ["Widgets", "Entfernt Windows Widgets, wenn du sie nicht verwendest."],
+    ["Telemetrie", "Reduziert oder deaktiviert optionale Telemetrie."],
+    ["Temporäre Dateien", "Bereinigt temporäre Benutzer- und Systemdateien."],
+    ["Wiederherstellungspunkt", "Erstellt vor wichtigen Änderungen einen Wiederherstellungspunkt."]
+  ]
+};
+
+const debloatRiskLevel = (level, t) =>
+  level === "safe" ? t.ok : level === "review" ? t.review : t.omit;
+
+/* =========================================================
    DEBLOAT
 ========================================================= */
 
-function Debloat({ t }) {
+function Debloat({ t, lang }) {
+  const localizedItems = DEBLOAT_ITEMS.map(([title, desc, level], index) => {
+    const translated = debloatTranslations[lang]?.[index] || debloatTranslations.en[index];
+    return [translated[0], translated[1], level];
+  });
+
   const [open, setOpen] =
     useState(false);
 
@@ -1516,13 +1628,13 @@ function Debloat({ t }) {
     });
 
   const completed =
-    DEBLOAT_ITEMS.filter(
+    localizedItems.filter(
       (_, index) => done[index]
     ).length;
 
   const pct = Math.round(
     (completed /
-      DEBLOAT_ITEMS.length) *
+      localizedItems.length) *
       100
   );
 
@@ -1545,7 +1657,7 @@ function Debloat({ t }) {
   const selectAll = () => {
     update(
       Object.fromEntries(
-        DEBLOAT_ITEMS.map(
+        localizedItems.map(
           (_, index) => [
             index,
             true
@@ -1598,7 +1710,7 @@ function Debloat({ t }) {
             <div className="progress-meta">
               <span>
                 {completed} /{" "}
-                {DEBLOAT_ITEMS.length}{" "}
+                {localizedItems.length}{" "}
                 {t.completed}
               </span>
 
@@ -1644,13 +1756,57 @@ function Debloat({ t }) {
 
         </div>
 
+        <div className="debloat-instructions">
+          <div className="section-number">{t.instructionsTitle}</div>
+
+          <p>{t.instructionsText}</p>
+
+          <div className="instruction-steps">
+            <div>
+              <span>01</span>
+              <strong>{t.instructionsSteps}</strong>
+            </div>
+            <div>
+              <span>02</span>
+              <strong>{t.instructionsStep2}</strong>
+            </div>
+            <div>
+              <span>03</span>
+              <strong>{t.instructionsStep3}</strong>
+            </div>
+          </div>
+
+          <div className="instruction-command">
+            <div className="instruction-command-head">
+              <span>{t.instructionsCommandLabel}</span>
+              <a
+                href="https://github.com/ChrisTitusTech/winutil"
+                target="_blank"
+                rel="noreferrer"
+              >
+                {t.instructionsLink}
+                <ArrowUpRight size={14} />
+              </a>
+            </div>
+
+            <code>
+              irm https://christitus.com/win | iex
+            </code>
+          </div>
+
+          <div className="instruction-warning">
+            <ShieldCheck size={15} />
+            <span>{t.instructionsWarning}</span>
+          </div>
+        </div>
+
         {open && (
           <div className="checklist-panel">
 
             <div className="checklist-summary">
               <span>
                 {completed} /{" "}
-                {DEBLOAT_ITEMS.length}
+                {localizedItems.length}
               </span>
 
               <span>
@@ -1658,7 +1814,7 @@ function Debloat({ t }) {
               </span>
             </div>
 
-            {DEBLOAT_ITEMS.map(
+            {localizedItems.map(
               ([title, desc, level], index) => (
                 <label
                   className={`check-item ${
@@ -1666,6 +1822,9 @@ function Debloat({ t }) {
                       ? "checked"
                       : ""
                   }`}
+                  style={{
+                    gridTemplateColumns: "20px minmax(0, 1fr) auto"
+                  }}
                   key={title}
                 >
 
@@ -1683,7 +1842,10 @@ function Debloat({ t }) {
                     <Check size={13} />
                   </span>
 
-                  <span className="check-copy">
+                  <span
+                    className="check-copy"
+                    style={{ minWidth: 0 }}
+                  >
                     <strong>
                       {title}
                     </strong>

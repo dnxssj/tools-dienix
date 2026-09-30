@@ -933,6 +933,127 @@ button {
 }
 
 /* =========================================================
+   DEBLOAT INSTRUCTIONS
+========================================================= */
+
+.debloat-instructions {
+  margin-top: 24px;
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(0, 240, 255, 0.035),
+      rgba(255, 255, 255, 0.012)
+    );
+}
+
+.debloat-instructions > p {
+  max-width: 820px;
+  margin: 8px 0 20px;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.instruction-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.instruction-steps > div {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  min-width: 0;
+  padding: 13px;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  background: rgba(255, 255, 255, 0.018);
+}
+
+.instruction-steps span {
+  flex: 0 0 auto;
+  color: #7f88aa;
+  font-size: 0.62rem;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+}
+
+.instruction-steps strong {
+  color: var(--text);
+  font-size: 0.72rem;
+  line-height: 1.45;
+}
+
+.instruction-command {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--bg);
+}
+
+.instruction-command-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 10px 13px;
+  border-bottom: 1px solid var(--line);
+}
+
+.instruction-command-head > span {
+  color: #7f88aa;
+  font-size: 0.62rem;
+  font-weight: 850;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.instruction-command-head a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--accent);
+  font-size: 0.68rem;
+  font-weight: 800;
+}
+
+.instruction-command code {
+  display: block;
+  overflow-x: auto;
+  padding: 15px;
+  color: #dfe3f2;
+  font-family:
+    "SFMono-Regular",
+    Consolas,
+    "Liberation Mono",
+    monospace;
+  font-size: 0.74rem;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.instruction-warning {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-top: 13px;
+  color: #8f98b7;
+  font-size: 0.68rem;
+  line-height: 1.5;
+}
+
+.instruction-warning svg {
+  flex: 0 0 auto;
+  margin-top: 2px;
+  color: #ffb86b;
+}
+
+/* =========================================================
    CHECKLIST
 ========================================================= */
 
@@ -1313,6 +1434,23 @@ footer {
   border-color: #aab2c4;
 }
 
+:root[data-theme="light"] .debloat-instructions {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(0, 170, 190, 0.035),
+      rgba(16, 21, 40, 0.012)
+    );
+}
+
+:root[data-theme="light"] .instruction-steps > div {
+  background: rgba(16, 21, 40, 0.018);
+}
+
+:root[data-theme="light"] .instruction-command code {
+  color: #31394f;
+}
+
 /* =========================================================
    RESPONSIVE
 ========================================================= */
@@ -1349,6 +1487,20 @@ footer {
 }
 
 @media (max-width: 700px) {
+  .instruction-steps {
+    grid-template-columns: 1fr;
+  }
+
+  .instruction-command-head {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .debloat-instructions {
+    padding: 18px;
+  }
+
+
   .shell {
     width: min(
       100% - 30px,
@@ -1453,14 +1605,11 @@ footer {
   }
 
   .check-item {
-    grid-template-columns:
-      22px
-      28px
-      minmax(0, 1fr);
+    grid-template-columns: 22px minmax(0, 1fr);
   }
 
   .risk {
-    grid-column: 3;
+    grid-column: 2;
     justify-self: start;
     margin-top: 2px;
   }
