@@ -64,10 +64,40 @@ export const PROJECTS = [
 ];
 
 export const TOOLS = [
-  { slug: "dnx-lab", title: "DNX Lab", description: "A growing collection of practical Windows utilities.", accent: "#00F0FF", tags: ["Windows", "C#", "PowerShell"] },
-  { slug: "dnx-cleaner", title: "DNX Cleaner", description: "Windows cleanup and maintenance utility.", accent: "#8C6CFF", tags: ["Windows", "PowerShell"] },
-  { slug: "desktop-mover", title: "Desktop Mover", description: "Keeps new desktop icons positioned on the intended monitor.", accent: "#FFB86B", tags: ["Windows", "C#", "WinAPI"] },
-  { slug: "dnx-winget", title: "DNX Winget", description: "A focused software installation workflow for fresh Windows setups.", accent: "#FF5CA8", tags: ["Windows", "WinGet", "C#"] }
+
+  {
+    slug: "dnx-cleaner",
+    title: "DNX Cleaner",
+    description: "Windows cleanup and maintenance utility.",
+    accent: "#8C6CFF",
+    status: "active",
+    tags: ["Windows", "PowerShell"]
+  },
+  {
+    slug: "desktop-mover",
+    title: "Desktop Mover",
+    description: "Keeps new desktop icons positioned on the intended monitor.",
+    accent: "#FFB86B",
+    status: "beta",
+    tags: ["Windows", "C#", "WinAPI"]
+  },
+  {
+    slug: "dnx-winget",
+    title: "DNX Winget",
+    description: "A focused software installation workflow for fresh Windows setups.",
+    accent: "#FF5CA8",
+    status: "coming-soon",
+    tags: ["Windows", "WinGet", "C#"]
+  },
+  {
+    slug: "template-studio",
+    title: "Template Studio",
+    description: "GoodNotes template generator for creating and exporting digital templates.",
+    accent: "#432818",
+    status: "active",
+    tags: ["React", "Vite", "GoodNotes"],
+    externalUrl: "https://tools.dnxlab.de/template-studio/"
+  }
 ];
 
 export const NAV_ITEMS = [

@@ -155,6 +155,10 @@ const translations = {
     available: "Available",
     categoryToolkit: "Toolkit",
 
+    statusActive: "ACTIVE",
+    statusBeta: "BETA",
+    statusComingSoon: "COMING SOON",
+
     light: "Light mode",
     dark: "Dark mode",
     language: "Language"
@@ -260,6 +264,10 @@ const translations = {
     available: "Disponible",
     categoryToolkit: "Herramientas",
 
+    statusActive: "ACTIVO",
+    statusBeta: "BETA",
+    statusComingSoon: "PRÓXIMAMENTE",
+
     light: "Modo claro",
     dark: "Modo oscuro",
     language: "Idioma"
@@ -364,6 +372,10 @@ const translations = {
     powered: "Powered by",
     available: "Verfügbar",
     categoryToolkit: "Toolkit",
+
+    statusActive: "AKTIV",
+    statusBeta: "BETA",
+    statusComingSoon: "DEMNÄCHST",
 
     light: "Heller Modus",
     dark: "Dunkler Modus",
@@ -496,6 +508,10 @@ const toolTranslations = {
     "DNX Winget": [
       "DNX Winget",
       "Interfaz simplificada para gestionar aplicaciones mediante Winget."
+    ],
+    "Template Studio": [
+      "Template Studio",
+      "Generador de plantillas para GoodNotes."
     ]
   },
 
@@ -515,6 +531,10 @@ const toolTranslations = {
     "DNX Winget": [
       "DNX Winget",
       "Vereinfachte Oberfläche zur Verwaltung von Anwendungen mit Winget."
+    ],
+    "Template Studio": [
+      "Template Studio",
+      "Generator für GoodNotes-Vorlagen."
     ]
   }
 };
@@ -1027,18 +1047,31 @@ function Toolkit() {
               tool.title
               ];
 
-            return (
-              <Link
-                className="tool-card"
-                style={{
-                  "--accent": tool.accent
-                }}
-                to={`/project/${tool.slug}`}
-                key={tool.slug}
-              >
+            const statusLabel = {
+              active: t.statusActive,
+              beta: t.statusBeta,
+              "coming-soon": t.statusComingSoon
+            }[tool.status];
 
-                <div className="tool-icon">
-                  <KeyRound size={18} />
+            const content = (
+              <>
+                <div className="tool-card-top">
+                  <div className="tool-icon">
+                    <KeyRound size={18} />
+                  </div>
+
+                  <div className="tool-status-row">
+                    {tool.status && (
+                      <span className={`tool-status ${tool.status}`}>
+                        {statusLabel}
+                      </span>
+                    )}
+
+                    <ArrowUpRight
+                      className="tool-arrow"
+                      size={18}
+                    />
+                  </div>
                 </div>
 
                 <div className="tool-title">
@@ -1057,12 +1090,34 @@ function Toolkit() {
                     </span>
                   ))}
                 </div>
+              </>
+            );
 
-                <ArrowUpRight
-                  className="tool-arrow"
-                  size={18}
-                />
+            if (tool.externalUrl) {
+              return (
+                <a
+                  className="tool-card"
+                  style={{
+                    "--accent": tool.accent
+                  }}
+                  href={tool.externalUrl}
+                  key={tool.slug}
+                >
+                  {content}
+                </a>
+              );
+            }
 
+            return (
+              <Link
+                className="tool-card"
+                style={{
+                  "--accent": tool.accent
+                }}
+                to={`/project/${tool.slug}`}
+                key={tool.slug}
+              >
+                {content}
               </Link>
             );
           })}
