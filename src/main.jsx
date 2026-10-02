@@ -1194,83 +1194,85 @@ function PasswordGenerator({ t }) {
       return;
     }
 
-    let result = words
-      .map((word) =>
-        [...word]
-          .map((char) => {
-            const low =
-              char.toLowerCase();
+    /*
+      Memorable phrase mode keeps the original word order
+      and structure. Characters are transformed, separators
+      stay between words, and extra entropy is appended at
+      the end. The phrase is never globally shuffled.
+    */
+    const transformedWords = words.map((word) =>
+      [...word]
+        .map((char) => {
+          const low = char.toLowerCase();
 
-            if (
-              useNumbers &&
-              replacements[low] &&
-              secureInt(100) < 42
-            ) {
-              return pick(
-                replacements[low]
-              );
-            }
+          if (
+            useNumbers &&
+            replacements[low] &&
+            secureInt(100) < 42
+          ) {
+            return pick(replacements[low]);
+          }
 
-            if (
-              useCase &&
-              /[a-záéíóúüñ]/i.test(char) &&
-              secureInt(100) < 48
-            ) {
-              return secureInt(2)
-                ? char.toUpperCase()
-                : char.toLowerCase();
-            }
+          if (
+            useCase &&
+            /[a-záéíóúüñ]/i.test(char) &&
+            secureInt(100) < 48
+          ) {
+            return secureInt(2)
+              ? char.toUpperCase()
+              : char.toLowerCase();
+          }
 
-            return char;
-          })
-          .join("")
-      )
-      .join(
-        useSeparators
-          ? pick("_-.=+:")
-          : ""
-      );
+          return char;
+        })
+        .join("")
+    );
+
+    let result = transformedWords.join(
+      useSeparators
+        ? pick("_-.=+:")
+        : ""
+    );
+
+    const suffix = [];
 
     if (useNumbers) {
-      result +=
-        pick("0123456789") +
-        pick("0123456789");
+      suffix.push(
+        pick("0123456789"),
+        pick("0123456789")
+      );
     }
 
     if (useSymbols) {
-      result += pick(
-        "!@#$%^&*+=?_-.:;~"
+      suffix.push(
+        pick("!@#$%^&*+=?_-.:;~")
       );
     }
 
     if (useSeparators) {
-      result += pick("_-.=+");
+      suffix.push(
+        pick("_-.=+")
+      );
     }
 
-    result = shuffle(
-      [...result]
-    ).join("");
-
-    if (result.length < length) {
-      const pool =
-        "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*+=?_-.:;";
-
-      while (result.length < length) {
-        result += pick(pool);
-      }
+    if (suffix.length) {
+      result += pick("_-.=+") + suffix.join("");
     }
 
-    setPassword(
-      shuffle(
-        [
-          ...result.slice(
-            0,
-            Math.max(length, 1)
-          )
-        ]
-      ).join("")
-    );
+    const pool =
+      "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*+=?_-.:;";
 
+    /*
+      If the phrase is shorter than the requested length,
+      complete it at the end. If the phrase itself is longer
+      than the selected length, keep it intact rather than
+      truncating or destroying its recognisable structure.
+    */
+    while (result.length < Math.max(length, 1)) {
+      result += pick(pool);
+    }
+
+    setPassword(result);
     setCopied(false);
   };
 
